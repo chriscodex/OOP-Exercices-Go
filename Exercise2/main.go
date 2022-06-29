@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
+	"math/rand"
+	"strconv"
 )
 
 type persona struct {
@@ -64,11 +66,16 @@ func (p *persona) esMayorDeEdad() bool {
 	return false
 }
 
+func (p *persona) generarDNI() {
+	p.dni = strconv.Itoa(rand.Intn(100000000))
+}
+
+// Setters
+
 func main() {
-	pers1 := NewPersona1("1561")
-	pers2 := NewPersona2("74062106", "Christian", 24, "F")
 	pers3 := NewPersona3("1231244", "Eduardo", 24, "M", 26, 1)
 	fmt.Println(pers3.calcularIMC())
 	fmt.Println(pers3.esMayorDeEdad())
-	fmt.Println(*pers2, *pers1)
+	pers3.generarDNI()
+	fmt.Println(pers3)
 }
