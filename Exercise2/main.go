@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type persona struct {
 	dni    string
@@ -41,8 +44,23 @@ func NewPersona3(dni string, nombre string, edad int, sexo string, peso float32,
 	}
 }
 
+// Methods
+func (p *persona) calcularIMC() int {
+	valor := (p.peso / float32(math.Pow(float64(p.altura), 2)))
+	switch {
+	case valor < 20:
+		return -1
+	case valor >= 20 && valor <= 25:
+		return 0
+	default:
+		return 1
+	}
+}
+
 func main() {
 	pers1 := NewPersona1("1561")
 	pers2 := NewPersona2("74062106", "Christian", 24, "F")
+	pers3 := NewPersona3("1231244", "Eduardo", 24, "M", 26, 1)
+	fmt.Println(pers3.calcularIMC())
 	fmt.Println(*pers2, *pers1)
 }
