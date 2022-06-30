@@ -35,8 +35,14 @@ func (p *password) generarPassword() {
 	p.contrasena = strconv.Itoa(rand.Intn(int(l)))
 }
 
+// Getters
+func (p *password) getLongitud() int {
+	return p.longitud
+}
+
 func main() {
 	p := newPassword2(8, "12344")
 	p.generarPassword()
 	fmt.Println(*p)
+	fmt.Println(p.getLongitud())
 }
