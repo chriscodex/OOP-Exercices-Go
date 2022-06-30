@@ -44,9 +44,17 @@ func (p *password) getContrasena() string {
 	return p.contrasena
 }
 
+// Setters
+func (p *password) setLongitud(l int) {
+	p.longitud = l
+}
+
 func main() {
 	p := newPassword2(8, "12344")
 	p.generarPassword()
 	fmt.Println(*p)
 	fmt.Println(p.getContrasena())
+	p.setLongitud(3)
+	p.generarPassword()
+	fmt.Println(p)
 }
