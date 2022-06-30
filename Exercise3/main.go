@@ -29,8 +29,14 @@ func newPassword2(longitud int, contrasena string) *password {
 	}
 }
 
+// Methods
+func (p *password) generarPassword() {
+	l := math.Pow(10, float64(p.longitud))
+	p.contrasena = strconv.Itoa(rand.Intn(int(l)))
+}
+
 func main() {
-	p := newPassword1(5)
+	p := newPassword2(8, "12344")
+	p.generarPassword()
 	fmt.Println(*p)
-	fmt.Println(int(rand.Float64() * 10000))
 }
