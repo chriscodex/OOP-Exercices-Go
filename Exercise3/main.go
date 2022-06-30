@@ -58,6 +58,7 @@ func crearArray(inp int) []password {
 		t = append(t, password{
 			longitud: s,
 		})
+		t[i].generarPassword()
 		fmt.Println(t[i])
 	}
 	return t
