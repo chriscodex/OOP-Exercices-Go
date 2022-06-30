@@ -49,17 +49,24 @@ func (p *password) setLongitud(l int) {
 	p.longitud = l
 }
 
-func main() {
-	var inp int
-	fmt.Println("Indique el tamano del array")
-	fmt.Scanln(&inp)
+func crearArray(inp int) []password {
 	t := []password{}
 	for i := 0; i < inp; i++ {
 		var s int
+		fmt.Printf("Indique la longitud del password %d\n", i+1)
 		fmt.Scanln(&s)
 		t = append(t, password{
 			longitud: s,
 		})
 		fmt.Println(t[i])
 	}
+	return t
+}
+
+func main() {
+	var inp int
+	fmt.Println("Indique el tamano del array")
+	fmt.Scanln(&inp)
+	t := crearArray(inp)
+	fmt.Println(t)
 }
