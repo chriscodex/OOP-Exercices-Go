@@ -13,7 +13,6 @@ type password struct {
 }
 
 // Constructor
-
 func newPassword1(long int) *password {
 	l := math.Pow(10, float64(long))
 	c := strconv.Itoa(rand.Intn(int(l)))
@@ -23,7 +22,15 @@ func newPassword1(long int) *password {
 	}
 }
 
+func newPassword2(longitud int, contrasena string) *password {
+	return &password{
+		longitud:   longitud,
+		contrasena: contrasena,
+	}
+}
+
 func main() {
 	p := newPassword1(5)
 	fmt.Println(*p)
+	fmt.Println(int(rand.Float64() * 10000))
 }
