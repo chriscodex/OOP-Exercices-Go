@@ -50,11 +50,16 @@ func (p *password) setLongitud(l int) {
 }
 
 func main() {
-	p := newPassword2(8, "12344")
-	p.generarPassword()
-	fmt.Println(*p)
-	fmt.Println(p.getContrasena())
-	p.setLongitud(3)
-	p.generarPassword()
-	fmt.Println(p)
+	var inp int
+	fmt.Println("Indique el tamano del array")
+	fmt.Scanln(&inp)
+	t := []password{}
+	for i := 0; i < inp; i++ {
+		var s int
+		fmt.Scanln(&s)
+		t = append(t, password{
+			longitud: s,
+		})
+		fmt.Println(t[i])
+	}
 }
