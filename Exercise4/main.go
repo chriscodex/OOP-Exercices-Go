@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// Class electrodoméstico
 type electrodomestico struct {
 	precioBase        int
 	color             string
@@ -9,9 +10,17 @@ type electrodomestico struct {
 	peso              float64
 }
 
+// Class lavadora
 type lavadora struct {
 	electrodomestico
 	carga float64
+}
+
+// Class television
+type televisor struct {
+	electrodomestico
+	resolucion   float64
+	sintonizador bool
 }
 
 type precFinal interface {
@@ -19,7 +28,7 @@ type precFinal interface {
 }
 
 // constructor electrodomestico
-func newElectrodometico() electrodomestico {
+func newElectrodomestico() electrodomestico {
 	return electrodomestico{
 		precioBase:        100,
 		color:             "Blanco",
@@ -28,16 +37,14 @@ func newElectrodometico() electrodomestico {
 	}
 }
 
-func newElectrodometico2(precio int, peso float64) electrodomestico {
-	return electrodomestico{
-		precioBase:        precio,
-		color:             "Blanco",
-		consumoEnergetico: "F",
-		peso:              peso,
-	}
+func newElectrodomestico2(precio int, peso float64) electrodomestico {
+	l := newElectrodomestico()
+	l.precioBase = precio
+	l.peso = peso
+	return l
 }
 
-func newElectrodometico3(precio int, color string, consumo string, peso float64) electrodomestico {
+func newElectrodomestico3(precio int, color string, consumo string, peso float64) electrodomestico {
 	return electrodomestico{
 		precioBase:        precio,
 		color:             color,
@@ -59,24 +66,44 @@ func newLavadora() lavadora {
 }
 
 func newLavadora2(pr int, pe float64) lavadora {
-	l := lavadora{}
+	l := newLavadora()
 	l.precioBase = pr
-	l.color = "Blanco"
-	l.consumoEnergetico = "F"
 	l.peso = pe
-	l.carga = 5
 	return l
 }
 
 func newLavadora3(c float64) lavadora {
-	e1 := newElectrodometico()
-	l := lavadora{}
-	l.precioBase = e1.precioBase
-	l.color = e1.color
-	l.consumoEnergetico = e1.consumoEnergetico
-	l.peso = e1.peso
+	l := newLavadora()
 	l.carga = c
 	return l
+}
+
+// Constructor television
+
+func newTelevisor() televisor {
+	e := newElectrodomestico()
+	t := televisor{}
+	t.precioBase = e.precioBase
+	t.color = e.color
+	t.consumoEnergetico = e.consumoEnergetico
+	t.peso = e.peso
+	t.resolucion = 20
+	t.sintonizador = false
+	return t
+}
+
+func newTelevisor2(pr int, pe float64) televisor {
+	t := newTelevisor()
+	t.precioBase = pr
+	t.peso = pe
+	return t
+}
+
+func newTelevisor3(re float64, sint bool) televisor {
+	t := newTelevisor()
+	t.resolucion = re
+	t.sintonizador = sint
+	return t
 }
 
 // methods of Lavadora
@@ -178,11 +205,10 @@ func (e *electrodomestico) precioFinal() float64 {
 }
 
 func main() {
-	e1 := newElectrodometico()
+	e1 := newElectrodomestico()
 	e1.peso = 100
 	p := e1.precioFinal()
 	fmt.Println(p)
 	l1 := newLavadora3(32.0)
-
 	fmt.Println(l1.precioFinal())
 }
