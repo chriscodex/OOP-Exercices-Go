@@ -7,6 +7,8 @@ import (
 	"strconv"
 )
 
+// Exercise 2 from https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-programacion-orientado-a-objetos-java/
+
 type persona struct {
 	dni    string
 	nombre string

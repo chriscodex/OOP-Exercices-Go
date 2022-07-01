@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+// Exercise 3 from https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-programacion-orientado-a-objetos-java/
+
 type password struct {
 	longitud   int
 	contrasena string
@@ -140,8 +142,4 @@ func main() {
 			fmt.Printf("La contrasena es: %v y es debil\n", t[i].getContrasena())
 		}
 	}
-	// p := newPassword1(8)
-	// p.generarPassword()
-	// p.contrasena = "AAB12345a"
-	// fmt.Println(p.esFuerte())
 }
