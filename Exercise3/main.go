@@ -117,7 +117,13 @@ func lettersAndNumbers() []string {
 	return []string{may, min, num}
 }
 
-func 
+func crearArrayBool(t []password) []bool {
+	b := []bool{}
+	for _, i := range t {
+		b = append(b, i.esFuerte())
+	}
+	return b
+}
 
 func main() {
 	var inp int
@@ -125,11 +131,15 @@ func main() {
 	fmt.Scanln(&inp)
 	t := crearArrayPasswords(inp)
 	fmt.Println(t)
-	b := []bool{}
-	for _, i := range t {
-		b = append(b, i.esFuerte())
-	}
+	b := crearArrayBool(t)
 	fmt.Println(b)
+	for i := 0; i < len(t); i++ {
+		if b[i] {
+			fmt.Printf("La contrasena es %v y es fuerte\n", t[i].getContrasena())
+		} else {
+
+		}
+	}
 	// p := newPassword1(8)
 	// p.generarPassword()
 	// p.contrasena = "AAB12345a"
