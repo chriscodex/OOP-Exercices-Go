@@ -9,7 +9,12 @@ type electrodomestico struct {
 	peso              float64
 }
 
-// constructor
+type lavadora struct {
+	electrodomestico
+	carga float64
+}
+
+// constructor electrodomestico
 func newElectrodometico() electrodomestico {
 	return electrodomestico{
 		precioBase:        100,
@@ -35,6 +40,28 @@ func newElectrodometico3(precio int, color string, consumo string, peso float64)
 		consumoEnergetico: consumo,
 		peso:              peso,
 	}
+}
+
+// Constructor lavadora
+
+func newLavadora() lavadora {
+	l := lavadora{}
+	l.precioBase = 100
+	l.color = "Blanco"
+	l.consumoEnergetico = "F"
+	l.peso = 5
+	l.carga = 5
+	return l
+}
+
+func newLavadora2(pr int, pe float64) lavadora {
+	l := lavadora{}
+	l.precioBase = pr
+	l.color = "Blanco"
+	l.consumoEnergetico = "F"
+	l.peso = pe
+	l.carga = 5
+	return l
 }
 
 // getters
