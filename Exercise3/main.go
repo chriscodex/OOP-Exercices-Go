@@ -36,7 +36,7 @@ func newPassword2(longitud int, contrasena string) *password {
 // Methods
 func (p *password) generarPassword() {
 	rand.Seed(time.Now().UnixNano())
-	comp := lettersAndNumbers()
+	maps := lettersAndNumbers()
 	pass := ""
 	for i := 0; i < p.longitud; i++ {
 		first := rand.Intn(3)
@@ -45,34 +45,34 @@ func (p *password) generarPassword() {
 		rNum := rand.Intn(9)
 		switch first {
 		case 0:
-			pass += string(comp[0][rMay])
+			pass += string(maps["may"][rMay])
 		case 1:
-			pass += string(comp[1][rMin])
+			pass += string(maps["min"][rMin])
 		case 2:
-			pass += string(comp[2][rNum])
+			pass += string(maps["num"][rNum])
 		}
 	}
 	p.contrasena = pass
 }
 
 func (p *password) esFuerte() bool {
-	comp := lettersAndNumbers()
+	maps := lettersAndNumbers()
 	cMay := 0
 	cMin := 0
 	cNum := 0
 	for j := 0; j < len(p.contrasena); j++ {
-		for i := 0; i < len(comp[0]); i++ {
-			if p.contrasena[j] == comp[0][i] {
+		for i := 0; i < len(maps["may"]); i++ {
+			if p.contrasena[j] == maps["may"][i] {
 				cMay += 1
 			}
 		}
-		for i := 0; i < len(comp[1]); i++ {
-			if p.contrasena[j] == comp[1][i] {
+		for i := 0; i < len(maps["min"]); i++ {
+			if p.contrasena[j] == maps["min"][i] {
 				cMin += 1
 			}
 		}
-		for i := 0; i < len(comp[2]); i++ {
-			if p.contrasena[j] == comp[2][i] {
+		for i := 0; i < len(maps["num"]); i++ {
+			if p.contrasena[j] == maps["num"][i] {
 				cNum += 1
 			}
 		}
@@ -112,12 +112,24 @@ func crearArrayPasswords(inp int) []password {
 	return t
 }
 
-func lettersAndNumbers() []string {
-	may := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	min := strings.ToLower(may)
-	num := "123456789"
-	return []string{may, min, num}
+func lettersAndNumbers() map[string]string {
+	maps := make(map[string]string)
+	maps["may"] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	maps["min"] = strings.ToLower(maps["may"])
+	maps["num"] = "123456789"
+	return maps
 }
+
+// func lettersAndNumbers() []string {
+// 	maps := make(map[string]string)
+// 	maps["may"] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+// 	maps["min"] = strings.ToLower(maps["may"])
+// 	maps["num"] = "123456789"
+// 	may := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+// 	min := strings.ToLower(may)
+// 	num := "123456789"
+// 	return []string{may, min, num}
+// }
 
 func crearArrayBool(t []password) []bool {
 	b := []bool{}

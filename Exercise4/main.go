@@ -106,6 +106,32 @@ func newTelevisor3(re float64, sint bool) televisor {
 	return t
 }
 
+// methods of televisor
+// getters
+func (t *televisor) getResolucion() float64 {
+	return t.resolucion
+}
+func (t *televisor) getSintonizador() bool {
+	return t.sintonizador
+}
+
+func (t *televisor) precioFinal() float64 {
+	e := newElectrodomestico3(t.precioBase, t.color, t.consumoEnergetico, t.peso)
+	pf := e.precioFinal()
+	pf1 := func() float64 {
+		if t.resolucion >= 40 {
+			return pf * 1.3
+		} else {
+			return pf
+		}
+	}()
+	if t.sintonizador {
+		return pf1 + float64(50)
+	} else {
+		return pf1
+	}
+}
+
 // methods of Lavadora
 
 func (l *lavadora) getCarga() float64 {
@@ -119,12 +145,12 @@ func (l *lavadora) precioFinal() float64 {
 		consumoEnergetico: l.consumoEnergetico,
 		peso:              l.peso,
 	}
-	pfl := e1.precioFinal()
+	pf := e1.precioFinal()
 	if l.carga >= 30 {
-		pfl += 50
-		return pfl
+		pf += 50
+		return pf
 	}
-	return pfl
+	return pf
 }
 
 // getters
@@ -160,7 +186,7 @@ func (e *electrodomestico) comprobarColor(color string) {
 }
 
 func (e *electrodomestico) precioFinal() float64 {
-	pfl := func() float64 {
+	pf := func() float64 {
 		pfl := float64(e.getPrecioBase())
 		switch e.getConsumoEnergetico() {
 		case "A":
@@ -188,19 +214,19 @@ func (e *electrodomestico) precioFinal() float64 {
 	p := e.getPeso()
 	switch {
 	case p >= 0 && p <= 19:
-		pfl += 10
-		return pfl
+		pf += 10
+		return pf
 	case p >= 20 && p <= 49:
-		pfl += 50
-		return pfl
+		pf += 50
+		return pf
 	case p >= 50 && p <= 79:
-		pfl += 80
-		return pfl
+		pf += 80
+		return pf
 	case p >= 80 && p <= 100:
-		pfl += 100
-		return pfl
+		pf += 100
+		return pf
 	default:
-		return pfl
+		return pf
 	}
 }
 
@@ -211,4 +237,12 @@ func main() {
 	fmt.Println(p)
 	l1 := newLavadora3(32.0)
 	fmt.Println(l1.precioFinal())
+	t1 := newTelevisor3(50, true)
+	fmt.Println(t1.precioFinal())
+	//
+	//tam = 10
+	arrayElectrodomesticos := []electrodomestico{}
+	arrayElectrodomesticos = append(arrayElectrodomesticos, l1.electrodomestico)
+	fmt.Println(arrayElectrodomesticos)
+
 }
