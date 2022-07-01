@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type password struct {
@@ -32,30 +33,44 @@ func newPassword2(longitud int, contrasena string) *password {
 
 // Methods
 func (p *password) generarPassword() {
-	l := math.Pow(10, float64(p.longitud))
-	p.contrasena = strconv.Itoa(rand.Intn(int(l)))
+	rand.Seed(time.Now().UnixNano())
+	comp := lettersAndNumbers()
+	pass := ""
+	for i := 0; i < p.longitud; i++ {
+		first := rand.Intn(3)
+		rMay := rand.Intn(25)
+		rMin := rand.Intn(25)
+		rNum := rand.Intn(9)
+		switch first {
+		case 0:
+			pass += string(comp[0][rMay])
+		case 1:
+			pass += string(comp[1][rMin])
+		case 2:
+			pass += string(comp[2][rNum])
+		}
+	}
+	fmt.Println(pass)
 }
 
 func (p *password) esFuerte() bool {
-	may := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	min := strings.ToLower(may)
-	num := "123456789"
+	comp := lettersAndNumbers()
 	cMay := 0
 	cMin := 0
 	cNum := 0
 	for j := 0; j < len(p.contrasena); j++ {
-		for i := 0; i < len(may); i++ {
-			if p.contrasena[j] == may[i] {
+		for i := 0; i < len(comp[0]); i++ {
+			if p.contrasena[j] == comp[0][i] {
 				cMay += 1
 			}
 		}
-		for i := 0; i < len(min); i++ {
-			if p.contrasena[j] == min[i] {
+		for i := 0; i < len(comp[1]); i++ {
+			if p.contrasena[j] == comp[1][i] {
 				cMin += 1
 			}
 		}
-		for i := 0; i < len(num); i++ {
-			if p.contrasena[j] == num[i] {
+		for i := 0; i < len(comp[2]); i++ {
+			if p.contrasena[j] == comp[2][i] {
 				cNum += 1
 			}
 		}
@@ -96,11 +111,21 @@ func crearArray(inp int) []password {
 	return t
 }
 
+func lettersAndNumbers() []string {
+	may := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	min := strings.ToLower(may)
+	num := "123456789"
+	return []string{may, min, num}
+}
+
 func main() {
 	// var inp int
 	// fmt.Println("Indique el tamano del array")
 	// fmt.Scanln(&inp)
 	// t := crearArray(inp)
 	// fmt.Println(t)
-	fmt.Println(esFuerte("AZu8675443"))
+	p := newPassword1(8)
+	p.generarPassword()
+	p.contrasena = "AAB12345a"
+	fmt.Println(p.esFuerte())
 }
