@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// Exercise 4 from https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-programacion-orientado-a-objetos-java/
+
 // Class electrodoméstico
 type electrodomestico struct {
 	precioBase        int
@@ -231,18 +233,34 @@ func (e *electrodomestico) precioFinal() float64 {
 }
 
 func main() {
-	e1 := newElectrodomestico()
-	e1.peso = 100
-	p := e1.precioFinal()
-	fmt.Println(p)
-	l1 := newLavadora3(32.0)
-	fmt.Println(l1.precioFinal())
-	t1 := newTelevisor3(50, true)
-	fmt.Println(t1.precioFinal())
-	//
-	//tam = 10
-	arrayElectrodomesticos := []electrodomestico{}
-	arrayElectrodomesticos = append(arrayElectrodomesticos, l1.electrodomestico)
-	fmt.Println(arrayElectrodomesticos)
-
+	arrayLavadora := []lavadora{
+		newLavadora(),
+		newLavadora2(300, 20),
+		newLavadora2(200, 10),
+	}
+	arrayTelevisor := []televisor{
+		newTelevisor(),
+		newTelevisor2(250, 35),
+		newTelevisor(),
+	}
+	c := make(chan float64)
+	go func() {
+		var suml float64
+		for i, e := range arrayLavadora {
+			fmt.Printf("El precio final de la lavadora %d es: %v\n", i+1, e.precioFinal())
+			suml += e.precioFinal()
+		}
+		c <- suml
+	}()
+	go func() {
+		var sumt float64
+		for i, e := range arrayTelevisor {
+			fmt.Printf("El precio final del televisor %d es: %v\n", i+1, e.precioFinal())
+			sumt += e.precioFinal()
+		}
+		c <- sumt
+	}()
+	total := <-c
+	total += <-c
+	fmt.Printf("El precio de todos los electrodomésticos es: %v", total)
 }
