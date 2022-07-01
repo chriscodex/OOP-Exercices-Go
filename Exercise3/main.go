@@ -5,6 +5,7 @@ import (
 	"math"
 	"math/rand"
 	"strconv"
+	"strings"
 )
 
 type password struct {
@@ -52,25 +53,25 @@ func (p *password) setLongitud(l int) {
 // Functions
 
 func esFuerte(c string) bool {
-	may := []string{"A", "B", "C", "D"}
-	min := []string{"a", "b", "c", "d"}
-	num := []string{"1", "2", "3", "4", "5"}
+	may := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	min := strings.ToLower(may)
+	num := "123456789"
 	cMay := 0
 	cMin := 0
 	cNum := 0
 	for j := 0; j < len(c); j++ {
 		for i := 0; i < len(may); i++ {
-			if string(c[j]) == may[i] {
+			if c[j] == may[i] {
 				cMay += 1
 			}
 		}
 		for i := 0; i < len(min); i++ {
-			if string(c[j]) == min[i] {
+			if c[j] == min[i] {
 				cMin += 1
 			}
 		}
 		for i := 0; i < len(num); i++ {
-			if string(c[j]) == num[i] {
+			if c[j] == num[i] {
 				cNum += 1
 			}
 		}
@@ -103,5 +104,5 @@ func main() {
 	// fmt.Scanln(&inp)
 	// t := crearArray(inp)
 	// fmt.Println(t)
-	fmt.Println(esFuerte("AAa12345"))
+	fmt.Println(esFuerte("AZu8675443"))
 }
