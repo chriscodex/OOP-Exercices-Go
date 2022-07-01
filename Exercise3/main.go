@@ -53,17 +53,29 @@ func (p *password) setLongitud(l int) {
 
 func esFuerte(c string) bool {
 	may := []string{"A", "B", "C", "D"}
-	//min := []string{"a","b","c","d"}
-	//num := []string{"1","2","3","4"}
+	min := []string{"a", "b", "c", "d"}
+	num := []string{"1", "2", "3", "4", "5"}
 	cMay := 0
-	for j := 0; j < len(c)-1; j++ {
+	cMin := 0
+	cNum := 0
+	for j := 0; j < len(c); j++ {
 		for i := 0; i < len(may); i++ {
 			if string(c[j]) == may[i] {
 				cMay += 1
 			}
 		}
+		for i := 0; i < len(min); i++ {
+			if string(c[j]) == min[i] {
+				cMin += 1
+			}
+		}
+		for i := 0; i < len(num); i++ {
+			if string(c[j]) == num[i] {
+				cNum += 1
+			}
+		}
 	}
-	if cMay >= 2 {
+	if cMay >= 2 && cMin >= 1 && cNum >= 5 {
 		return true
 	} else {
 		return false
@@ -91,5 +103,5 @@ func main() {
 	// fmt.Scanln(&inp)
 	// t := crearArray(inp)
 	// fmt.Println(t)
-	fmt.Println(esFuerte("aa123"))
+	fmt.Println(esFuerte("AAa12345"))
 }
