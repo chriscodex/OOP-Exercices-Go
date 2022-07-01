@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type electrodomestico struct {
 	precioBase        int
 	color             string
@@ -67,9 +69,55 @@ func (e *electrodomestico) comprobarColor(color string) {
 	}
 }
 
+func (e *electrodomestico) precioFinal() float64 {
+	pfl := float64(e.getPrecioBase())
+	c1 := make(chan float64)
+	go func() {
+		switch e.getConsumoEnergetico() {
+		case "A":
+			pfl += 100
+			c1 <- float64(pfl)
+		case "B":
+			pfl += 80
+			c1 <- float64(pfl)
+		case "C":
+			pfl += 60
+			c1 <- float64(pfl)
+		case "D":
+			pfl += 50
+			c1 <- float64(pfl)
+		case "E":
+			pfl += 30
+			c1 <- float64(pfl)
+		case "F":
+			pfl += 10
+			c1 <- float64(pfl)
+		default:
+			c1 <- float64(pfl)
+		}
+	}()
+	p := e.getPeso()
+	switch {
+	case p >= 0 && p <= 19:
+		pfl = <-c1 + 10
+		return pfl
+	case p >= 20 && p <= 49:
+		pfl = <-c1 + 50
+		return pfl
+	case p >= 50 && p <= 79:
+		pfl = <-c1 + 80
+		return pfl
+	case p >= 80 && p <= 100:
+		pfl = <-c1 + 100
+		return pfl
+	default:
+		return pfl
+	}
+}
+
 func main() {
 	e1 := newElectrodometico()
 	e1.peso = 100
-	//p := e1.precioFinal()
-	//fmt.Println(p)
+	p := e1.precioFinal()
+	fmt.Println(p)
 }
