@@ -135,9 +135,9 @@ func main() {
 	fmt.Println(b)
 	for i := 0; i < len(t); i++ {
 		if b[i] {
-			fmt.Printf("La contrasena es %v y es fuerte\n", t[i].getContrasena())
+			fmt.Printf("La contrasena es: %v y es fuerte\n", t[i].getContrasena())
 		} else {
-			fmt.Printf("La contrasena es %v y es debil\n", t[i].getContrasena())
+			fmt.Printf("La contrasena es: %v y es debil\n", t[i].getContrasena())
 		}
 	}
 	// p := newPassword1(8)
