@@ -51,7 +51,6 @@ func (p *password) generarPassword() {
 		}
 	}
 	p.contrasena = pass
-	fmt.Println(pass)
 }
 
 func (p *password) esFuerte() bool {
@@ -97,7 +96,7 @@ func (p *password) setLongitud(l int) {
 	p.longitud = l
 }
 
-func crearArray(inp int) *[]password {
+func crearArrayPasswords(inp int) []password {
 	t := []password{}
 	for i := 0; i < inp; i++ {
 		var s int
@@ -107,9 +106,8 @@ func crearArray(inp int) *[]password {
 			longitud: s,
 		})
 		t[i].generarPassword()
-		fmt.Println(t[i])
 	}
-	return &t
+	return t
 }
 
 func lettersAndNumbers() []string {
@@ -119,12 +117,19 @@ func lettersAndNumbers() []string {
 	return []string{may, min, num}
 }
 
+func 
+
 func main() {
 	var inp int
 	fmt.Println("Indique el tamano del array")
 	fmt.Scanln(&inp)
-	t := crearArray(inp)
+	t := crearArrayPasswords(inp)
 	fmt.Println(t)
+	b := []bool{}
+	for _, i := range t {
+		b = append(b, i.esFuerte())
+	}
+	fmt.Println(b)
 	// p := newPassword1(8)
 	// p.generarPassword()
 	// p.contrasena = "AAB12345a"
