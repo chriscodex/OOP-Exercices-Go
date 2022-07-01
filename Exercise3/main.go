@@ -36,6 +36,37 @@ func (p *password) generarPassword() {
 	p.contrasena = strconv.Itoa(rand.Intn(int(l)))
 }
 
+func (p *password) esFuerte() bool {
+	may := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	min := strings.ToLower(may)
+	num := "123456789"
+	cMay := 0
+	cMin := 0
+	cNum := 0
+	for j := 0; j < len(p.contrasena); j++ {
+		for i := 0; i < len(may); i++ {
+			if p.contrasena[j] == may[i] {
+				cMay += 1
+			}
+		}
+		for i := 0; i < len(min); i++ {
+			if p.contrasena[j] == min[i] {
+				cMin += 1
+			}
+		}
+		for i := 0; i < len(num); i++ {
+			if p.contrasena[j] == num[i] {
+				cNum += 1
+			}
+		}
+	}
+	if cMay >= 2 && cMin >= 1 && cNum >= 5 {
+		return true
+	} else {
+		return false
+	}
+}
+
 // Getters
 func (p *password) getLongitud() int {
 	return p.longitud
@@ -48,39 +79,6 @@ func (p *password) getContrasena() string {
 // Setters
 func (p *password) setLongitud(l int) {
 	p.longitud = l
-}
-
-// Functions
-
-func esFuerte(c string) bool {
-	may := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	min := strings.ToLower(may)
-	num := "123456789"
-	cMay := 0
-	cMin := 0
-	cNum := 0
-	for j := 0; j < len(c); j++ {
-		for i := 0; i < len(may); i++ {
-			if c[j] == may[i] {
-				cMay += 1
-			}
-		}
-		for i := 0; i < len(min); i++ {
-			if c[j] == min[i] {
-				cMin += 1
-			}
-		}
-		for i := 0; i < len(num); i++ {
-			if c[j] == num[i] {
-				cNum += 1
-			}
-		}
-	}
-	if cMay >= 2 && cMin >= 1 && cNum >= 5 {
-		return true
-	} else {
-		return false
-	}
 }
 
 func crearArray(inp int) []password {
