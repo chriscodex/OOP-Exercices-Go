@@ -1,5 +1,7 @@
 package structs
 
+import "fmt"
+
 // Getters
 func (s *Serie) GetTitulo() string {
 	return s.Titulo
@@ -40,4 +42,14 @@ func (s *Serie) SetGenero(g string) {
 
 func (s *Serie) SetCreador(c string) {
 	s.Creador = c
+}
+
+func (s Serie) String() string {
+	if s.GetEntregado() {
+		return fmt.Sprintf("Titulo de la serie: %s\nNumero de temporadas: %d\nEstado de entrega: Entregado\nGenero: %s\nCreador: %s",
+			s.GetTitulo(), s.GetNTemporadas(), s.GetGenero(), s.GetCreador())
+	} else {
+		return fmt.Sprintf("Titulo de la serie: %s\nNumero de temporadas: %d\nEstado de entrega: No Entregado\nGenero: %s\nCreador: %s",
+			s.GetTitulo(), s.GetNTemporadas(), s.GetGenero(), s.GetCreador())
+	}
 }
