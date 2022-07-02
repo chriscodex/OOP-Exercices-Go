@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	st "e4/structs"
+	"fmt"
+)
 
 // Exercise 4 from https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-programacion-orientado-a-objetos-java/
 
@@ -30,28 +33,28 @@ type precFinal interface {
 }
 
 // constructor electrodomestico
-func newElectrodomestico() electrodomestico {
-	return electrodomestico{
-		precioBase:        100,
-		color:             "Blanco",
-		consumoEnergetico: "F",
-		peso:              5,
+func newElectrodomestico() st.Electrodomestico {
+	return st.Electrodomestico{
+		PrecioBase:        100,
+		Color:             "Blanco",
+		ConsumoEnergetico: "F",
+		Peso:              5,
 	}
 }
 
-func newElectrodomestico2(precio int, peso float64) electrodomestico {
+func newElectrodomestico2(precio int, peso float64) st.Electrodomestico {
 	l := newElectrodomestico()
-	l.precioBase = precio
-	l.peso = peso
+	l.PrecioBase = precio
+	l.Peso = peso
 	return l
 }
 
-func newElectrodomestico3(precio int, color string, consumo string, peso float64) electrodomestico {
-	return electrodomestico{
-		precioBase:        precio,
-		color:             color,
-		consumoEnergetico: consumo,
-		peso:              peso,
+func newElectrodomestico3(precio int, color string, consumo string, peso float64) st.Electrodomestico {
+	return st.Electrodomestico{
+		PrecioBase:        precio,
+		Color:             color,
+		ConsumoEnergetico: consumo,
+		Peso:              peso,
 	}
 }
 
@@ -85,10 +88,10 @@ func newLavadora3(c float64) lavadora {
 func newTelevisor() televisor {
 	e := newElectrodomestico()
 	t := televisor{}
-	t.precioBase = e.precioBase
-	t.color = e.color
-	t.consumoEnergetico = e.consumoEnergetico
-	t.peso = e.peso
+	t.precioBase = e.PrecioBase
+	t.color = e.Color
+	t.consumoEnergetico = e.ConsumoEnergetico
+	t.peso = e.Peso
 	t.resolucion = 20
 	t.sintonizador = false
 	return t
