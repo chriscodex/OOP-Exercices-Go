@@ -9,6 +9,17 @@ type Electrodomestico struct {
 	Peso              float64
 }
 
+type Lavadora struct {
+	Electrodomestico
+	Carga float64
+}
+
+type Televisor struct {
+	Electrodomestico
+	Resolucion   float64
+	Sintonizador bool
+}
+
 func Hello() {
 	fmt.Println("hello")
 }
