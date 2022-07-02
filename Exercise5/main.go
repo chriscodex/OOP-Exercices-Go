@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	se := st.NewSerie3("The boys", 3, false, "action", "some1")
-	fmt.Println(se)
+	se := st.NewSerie3("The boys", 3, true, "action", "some1")
+	fmt.Println(se.GetEntregado())
 }

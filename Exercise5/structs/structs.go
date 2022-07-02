@@ -7,3 +7,11 @@ type Serie struct {
 	Genero      string
 	Creador     string
 }
+
+type Videojuego struct {
+	Titulo         string
+	HorasEstimadas float32
+	Entregado      bool
+	Genero         string
+	Compania       string
+}
