@@ -10,9 +10,6 @@ func (s *Serie) GetTitulo() string {
 func (s *Serie) GetNTemporadas() int {
 	return s.NTemporadas
 }
-func (s *Serie) GetEntregado() bool {
-	return s.Entregado
-}
 func (s *Serie) GetGenero() string {
 	return s.Genero
 }
@@ -27,9 +24,6 @@ func (s *Serie) SetTitulo(t string) {
 func (s *Serie) SetNTemporadas(nt int) {
 	s.NTemporadas = nt
 }
-func (s *Serie) SetEntregado(e bool) {
-	s.Entregado = e
-}
 func (s *Serie) SetGenero(g string) {
 	s.Genero = g
 }
@@ -38,7 +32,7 @@ func (s *Serie) SetCreador(c string) {
 }
 
 func (s Serie) String() string {
-	if s.GetEntregado() {
+	if s.Entregado {
 		return fmt.Sprintf("Titulo de la serie: %s\nNumero de temporadas: %d\nEstado de entrega: Entregado\nGenero: %s\nCreador: %s",
 			s.GetTitulo(), s.GetNTemporadas(), s.GetGenero(), s.GetCreador())
 	} else {
@@ -55,12 +49,32 @@ func (v *Videojuego) GetTitulo() string {
 func (v *Videojuego) GetHorasEstimadas() float32 {
 	return v.HorasEstimadas
 }
-func (v *Videojuego) GetEntregado() bool {
-	return v.Entregado
-}
 func (v *Videojuego) GetGenero() string {
 	return v.Genero
 }
 func (v *Videojuego) GetCompania() string {
 	return v.Compania
+}
+
+// Setters
+func (v *Videojuego) SetTitulo(t string) {
+	v.Titulo = t
+}
+func (v *Videojuego) SetHEstimadas(he float32) {
+	v.HorasEstimadas = he
+}
+func (v *Videojuego) SetGenero(g string) {
+	v.Genero = g
+}
+func (v *Videojuego) SetCompania(c string) {
+	v.Compania = c
+}
+
+func (v *Videojuego) String() string {
+	if v.Entregado {
+		return fmt.Sprintf("Titulo: %s\nHoras Estimadas: %v\nEstado de entrega: Entregado\nGenero: %s\nCompania: %s",
+			v.GetTitulo(), v.GetHorasEstimadas(), v.GetGenero(), v.GetCompania())
+	}
+	return fmt.Sprintf("Titulo: %s\nHoras Estimadas: %v\nEstado de entrega: No Entregado\nGenero: %s\nCompania: %s",
+		v.GetTitulo(), v.GetHorasEstimadas(), v.GetGenero(), v.GetCompania())
 }
