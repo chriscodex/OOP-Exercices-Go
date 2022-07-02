@@ -78,3 +78,29 @@ func (v Videojuego) String() string {
 	return fmt.Sprintf("Titulo: %s\nHoras Estimadas: %v\nEstado de entrega: No Entregado\nGenero: %s\nCompania: %s",
 		v.GetTitulo(), v.GetHorasEstimadas(), v.GetGenero(), v.GetCompania())
 }
+
+// Functions Entregar
+func (s *Serie) Entregar() {
+	s.Entregado = true
+}
+
+func (s *Serie) IsEntregado() {
+	s.Entregado = s.saveEntregado
+}
+
+func (v *Videojuego) Entregar() {
+	v.Entregado = true
+}
+
+func (v *Videojuego) IsEntregado() {
+	v.Entregado = v.saveEntregado
+}
+
+// Function Devolver
+func (s *Serie) Devolver() {
+	s.Entregado = false
+}
+
+func (v *Videojuego) Devolver() {
+	v.Entregado = false
+}

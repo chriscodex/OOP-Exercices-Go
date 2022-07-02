@@ -1,11 +1,12 @@
 package structs
 
 type Serie struct {
-	Titulo      string
-	NTemporadas int
-	Entregado   bool
-	Genero      string
-	Creador     string
+	Titulo        string
+	NTemporadas   int
+	Entregado     bool
+	Genero        string
+	Creador       string
+	saveEntregado bool
 }
 
 type Videojuego struct {
@@ -14,4 +15,10 @@ type Videojuego struct {
 	Entregado      bool
 	Genero         string
 	Compania       string
+	saveEntregado  bool
+}
+
+type Entregable interface {
+	Entregable()
+	Devolver()
 }
