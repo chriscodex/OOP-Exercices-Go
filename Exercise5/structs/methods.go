@@ -70,7 +70,7 @@ func (v *Videojuego) SetCompania(c string) {
 	v.Compania = c
 }
 
-func (v *Videojuego) String() string {
+func (v Videojuego) String() string {
 	if v.Entregado {
 		return fmt.Sprintf("Titulo: %s\nHoras Estimadas: %v\nEstado de entrega: Entregado\nGenero: %s\nCompania: %s",
 			v.GetTitulo(), v.GetHorasEstimadas(), v.GetGenero(), v.GetCompania())

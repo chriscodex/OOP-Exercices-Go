@@ -1,3 +1,3 @@
-module e5
+module ex5
 
 go 1.17

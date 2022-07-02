@@ -11,7 +11,7 @@ func NewSerie2(t string, c string) Serie {
 	return Serie{
 		Titulo:      t,
 		NTemporadas: s1.GetNTemporadas(),
-		Entregado:   s1.GetEntregado(),
+		Entregado:   s1.Entregado,
 		Genero:      s1.GetGenero(),
 		Creador:     c,
 	}
@@ -27,24 +27,24 @@ func NewSerie3(t string, nt int, e bool, g string, c string) Serie {
 	}
 }
 
-func (v *Videojuego) NewVideojuego() Videojuego {
+func NewVideojuego() Videojuego {
 	return Videojuego{
 		HorasEstimadas: 10,
 	}
 }
 
-func (v *Videojuego) NewVideoJuego2(t string, he float32) Videojuego {
-	vj := v.NewVideojuego()
+func NewVideoJuego2(t string, he float32) Videojuego {
+	vj := NewVideojuego()
 	return Videojuego{
 		Titulo:         t,
 		HorasEstimadas: he,
-		Entregado:      vj.GetEntregado(),
+		Entregado:      vj.Entregado,
 		Genero:         vj.GetGenero(),
 		Compania:       vj.GetCompania(),
 	}
 }
 
-func (v *Videojuego) NewVideoJuego3(t string, he float32, e bool, g string, c string) Videojuego {
+func NewVideoJuego3(t string, he float32, e bool, g string, c string) Videojuego {
 	return Videojuego{
 		Titulo:         t,
 		HorasEstimadas: he,
