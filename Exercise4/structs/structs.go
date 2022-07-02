@@ -1,7 +1,5 @@
 package structs
 
-import "fmt"
-
 type Electrodomestico struct {
 	PrecioBase        int
 	Color             string
@@ -22,8 +20,4 @@ type Televisor struct {
 
 type PrecFinal interface {
 	PrecioFinal() float64
-}
-
-func Hello() {
-	fmt.Println("hello")
 }
