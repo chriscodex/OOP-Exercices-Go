@@ -20,6 +20,10 @@ type Televisor struct {
 	Sintonizador bool
 }
 
+type PrecFinal interface {
+	PrecioFinal() float64
+}
+
 func Hello() {
 	fmt.Println("hello")
 }
