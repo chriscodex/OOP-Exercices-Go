@@ -23,7 +23,7 @@ func main() {
 	arraySeries[0].Entregar()
 	arrayVideojuegos[1].Entregar()
 	fmt.Println("Series Entregadas")
-	smay := 0
+	var smay int
 	var vmay float32
 	cs := 0
 	cv := 0
