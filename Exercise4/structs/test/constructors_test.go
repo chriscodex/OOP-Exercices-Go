@@ -18,4 +18,10 @@ func TestNewElectrodomestico(t *testing.T) {
 			},
 		},
 	}
+	for _, item := range tables {
+		ne := st.NewElectrodomestico()
+		if ne != item.n {
+			t.Errorf("New electrodomestico created with incorrect values as default")
+		}
+	}
 }
