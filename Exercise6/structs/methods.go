@@ -31,5 +31,5 @@ func (l *Libro) SetNPaginas(n int) {
 }
 
 func (l Libro) String() string {
-	return fmt.Sprintf("El libro con ISBN: %s, creado por el autor: %s, tiene %d paginas", l.ISBN, l.Autor, l.NPag)
+	return fmt.Sprintf("El libro %s con ISBN: %s, creado por el autor: %s, tiene %d paginas", l.GetTitulo(), l.GetISBN(), l.GetAutor(), l.GetNPaginas())
 }
