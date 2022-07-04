@@ -1,5 +1,7 @@
 package structs
 
+import "fmt"
+
 // Getters
 func (l *Libro) GetISBN() string {
 	return l.ISBN
@@ -26,4 +28,8 @@ func (l *Libro) SetAutor(a string) {
 }
 func (l *Libro) SetNPaginas(n int) {
 	l.NPag = n
+}
+
+func (l Libro) String() string {
+	return fmt.Sprintf("El libro con ISBN: %s, creado por el autor: %s, tiene %d paginas", l.ISBN, l.Autor, l.NPag)
 }
