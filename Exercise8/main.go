@@ -12,5 +12,6 @@ func main() {
 	// est4 := st.NewEstudiante("Jesus",20,"M",10)
 	prof1 := st.NewProfesor("Juan", 44, "M", "matematicas")
 	fmt.Println(prof1)
-
+	aula1 := st.NewAula(1, 30, "matematicas")
+	fmt.Println(aula1)
 }
