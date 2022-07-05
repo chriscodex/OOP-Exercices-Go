@@ -13,11 +13,19 @@ type Estudiante struct {
 
 type Profesor struct {
 	Persona
-	MateriaD string
+	MateriaD       string
+	Disponibilidad bool
 }
 
 type Aula struct {
-	Id     int
-	MaxEst int
-	CursoD string
+	Id             int
+	MaxEst         int
+	CursoD         string
+	Disponibilidad bool
+}
+
+type Clase struct {
+	Aula
+	Profesor
+	Estudiantes []*Estudiante
 }
