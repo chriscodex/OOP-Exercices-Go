@@ -14,14 +14,16 @@ func main() {
 	est4 := st.NewEstudiante("Jesus", 20, "M", 10)
 
 	prof1 := st.NewProfesor("Juan", 44, "M", "matematicas")
+	prof2 := st.NewProfesor("Pedro", 45, "'M", "matematicas")
 
 	aula1 := st.NewAula(1, 10, "matematicas")
 
 	fmt.Println("Clase:")
 	clase1 := st.NewClase(&prof1, &aula1)
 	clase1.AgregarEstudiante(&est1, &est2, &est3, &est4)
+	clase2 := st.NewClase(&prof2, &aula1)
 	// fmt.Println(clase1.RevisarClase())
-	fmt.Println(clase1)
+	fmt.Println(clase2)
 	fmt.Println(clase1.MostrarEstudiantes())
 	fmt.Println(clase1.RevisarClase())
 }
