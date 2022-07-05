@@ -18,4 +18,5 @@ func main() {
 	clase1.AgregarEstudiante(&est1, &est2, &est3, &est4)
 	// fmt.Println(clase1.RevisarClase())
 	fmt.Println(clase1)
+	fmt.Println(clase1.MostrarEstudiantes())
 }
