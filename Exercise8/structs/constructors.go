@@ -64,6 +64,7 @@ func NewClase(p *Profesor, a *Aula) Clase {
 				return Clase{
 					Profesor: *p,
 					Aula:     *a,
+					Materia:  p.MateriaD,
 				}
 			} else {
 				fmt.Println("Error, el aula se encuentra ocupada")

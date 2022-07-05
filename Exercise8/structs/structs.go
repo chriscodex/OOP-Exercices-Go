@@ -25,6 +25,7 @@ type Aula struct {
 }
 
 type Clase struct {
+	Materia string
 	Aula
 	Profesor
 	Estudiantes []*Estudiante

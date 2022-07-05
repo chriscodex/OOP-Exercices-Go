@@ -39,7 +39,7 @@ func (c *Clase) RevisarClase() bool {
 	return len(c.Estudiantes) > c.Aula.MaxEst/2
 }
 
-func (c *Clase) MostrarAprobados() []Estudiante {
+func (c *Clase) EstudiantesAprobados() []Estudiante {
 	apr := []Estudiante{}
 	for _, e := range c.Estudiantes {
 		if e.Calificacion > 5 {
