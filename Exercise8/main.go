@@ -16,7 +16,7 @@ func main() {
 	prof1 := st.NewProfesor("Juan", 44, "M", "matematicas")
 	prof2 := st.NewProfesor("Pedro", 45, "'M", "matematicas")
 
-	aula1 := st.NewAula(1, 10, "matematicas")
+	aula1 := st.NewAula(1, 5, "matematicas")
 
 	fmt.Println("Clase:")
 	clase1 := st.NewClase(&prof1, &aula1)
@@ -25,5 +25,9 @@ func main() {
 	// fmt.Println(clase1.RevisarClase())
 	fmt.Println(clase2)
 	fmt.Println(clase1.MostrarEstudiantes())
-	fmt.Println(clase1.RevisarClase())
+	if clase1.RevisarClase() {
+		fmt.Println("La clase 1 puede dictarse con normalidad")
+	} else {
+		fmt.Println("La clase 1 no puede dictarse")
+	}
 }
