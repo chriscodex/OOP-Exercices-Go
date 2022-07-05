@@ -36,8 +36,15 @@ func (c *Clase) MostrarEstudiantes() []Estudiante {
 }
 
 func (c *Clase) RevisarClase() bool {
-	if len(c.Estudiantes) > c.Aula.MaxEst/2 {
-		return true
+	return len(c.Estudiantes) > c.Aula.MaxEst/2
+}
+
+func (c *Clase) MostrarAprobados() []Estudiante {
+	apr := []Estudiante{}
+	for _, e := range c.Estudiantes {
+		if e.Calificacion > 5 {
+			apr = append(apr, *e)
+		}
 	}
-	return false
+	return apr
 }
